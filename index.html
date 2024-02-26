@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/js/api.js" async defer></script>
+    <script src="https://accounts.google.com/gsi/client" async></script>
+</head>
+
+<body>
+    <div id="g_id_onload" data-client_id="799142130370-8pllfqj84bhbcteqdoquq5td00rvh7t0.apps.googleusercontent.com"
+        data-context="signin" data-login_uri="http://localhost:5500/" data-itp_support="true">
+    </div>
+    <button onclick="signOut()">Sign out</button>
+    <script>
+        // window.onload = () => {
+        //     gapi.auth2.init({
+        //         client_id: '799142130370-8pllfqj84bhbcteqdoquq5td00rvh7t0.apps.googleusercontent.com'
+        //     });
+        // }
+
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId());
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail());
+        }
+
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+        }
+
+    </script>
+</body>
+
+</html>
